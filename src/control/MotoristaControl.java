@@ -6,6 +6,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import model.Motorista;
 import model.dao.MotoristaDao;
 
@@ -21,22 +22,29 @@ public class MotoristaControl {
     private JTextField tfEnd;
     private JTextField tfNumcnh;
     private JComboBox cbtipocnh;
+    private JTable jtListaM;
+    private JTextField tfPesquisa;
 
     //Veriáveis do model
     private Motorista motorista = null;
     private List<Motorista> listMotorista;
-    private MotoristaDao motoristaDao = new MotoristaDao();
+    private MotoristaDao motoristaDao; //talvez tenha que instanciar no construtor
 
-    public MotoristaControl(JTextField tfNome, JTextField tfNasc, JTextField tfEnd, JTextField tfNumcnh, JComboBox cbtipocnh) {
+    public MotoristaControl(JTextField tfNome, JTextField tfNasc, JTextField tfEnd, JTextField tfNumcnh, JComboBox cbtipocnh, JTable jtListaM,JTextField tfPesquisa) {
         this.tfNome = tfNome;
         this.tfNasc = tfNasc;
         this.tfEnd = tfEnd;
         this.tfNumcnh = tfNumcnh;
         this.cbtipocnh = cbtipocnh;
+        this.jtListaM = jtListaM;
+        this.tfPesquisa = tfPesquisa;
+        
+        
+        listMotorista = new ArrayList();
+        motoristaDao = new MotoristaDao();
+
     }
-    
-    
-    
+
     public void cadastrarAction() {
         //Montar nova motorista
         motorista = new Motorista();
@@ -44,31 +52,89 @@ public class MotoristaControl {
         motorista.setNascimento(tfNasc.getText());
         motorista.setEndereco(tfEnd.getText());
         motorista.setNumcnh(tfNumcnh.getText());
-        motorista.setTipocnh((String) cbtipocnh.getSelectedItem()); //Conferir a conversão de Obj p/ String
-        
+        motorista.setTipocnh((String) cbtipocnh.getSelectedItem()); //Conferir a conversão de Obj m/ String
 
         //Salvar motorista no banco e verificar o retorno
         boolean res = motoristaDao.salvar(motorista);
         if (res) {
             JOptionPane.showMessageDialog(null, "Cadastrado!");
+            listarAction();
         } else {
             JOptionPane.showMessageDialog(null, "Erro");
         }
     }
 
-    public void alterarAction() {
-        motorista.setNome(tfNome.getText());
-        motorista.setNascimento(tfNasc.getText());
-        motorista.setEndereco(tfEnd.getText());
-        motorista.setNumcnh(tfNumcnh.getText());
-        motorista.setTipocnh((String) cbtipocnh.getSelectedItem()); //Conferir a conversão de Obj p/ String
-        
-        
-        boolean res = motoristaDao.atualizar(motorista);
-        if (res) {
-            JOptionPane.showMessageDialog(null, "Editado com sucesso.");
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro ao editar.");
+    public void listarAction() {
+        listMotorista = motoristaDao.listar();
+        showItensTable();
+    }
+
+    private void showItensTable() {
+        DefaultTableModel model;
+        model = (DefaultTableModel) jtListaM.getModel();
+        model.setNumRows(0);
+        for (Motorista m : listMotorista) {
+            model.addRow(new Object[]{
+                m.getIdm(),
+                m.getNome(),
+                m.getNascimento(),
+                m.getEndereco(),
+                m.getTipocnh(),
+                m.getNumcnh()
+            });
         }
     }
+
+    public void alterarAction() {
+        motorista = getItemSelecionado();
+        if (motorista == null) {
+            JOptionPane.showMessageDialog(null, "Escolha um motorista!");
+        } else {
+            motorista.setNome(tfNome.getText());
+            motorista.setNascimento(tfNasc.getText());
+            motorista.setEndereco(tfEnd.getText());
+            motorista.setNumcnh(tfNumcnh.getText());
+            motorista.setTipocnh((String) cbtipocnh.getSelectedItem()); //Conferir a conversão de Obj m/ String
+
+            boolean res = motoristaDao.atualizar(motorista);
+            if (res) {
+                JOptionPane.showMessageDialog(null, "Editado com sucesso.");
+                listarAction(); 
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro ao editar.");
+            }
+        }
+    }
+
+    public void excluirAction() {
+        motorista = getItemSelecionado();
+        if (motorista == null) {
+            JOptionPane.showMessageDialog(null, "Escolha um motorista!");
+        } else {
+            boolean res = motoristaDao.excluir(motorista);
+            if (res) {
+                JOptionPane.showMessageDialog(null, "Motorista excluído!");
+                listarAction();
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro ao excluir!");
+            }
+        }
+        motorista = null;
+    }
+
+    private Motorista getItemSelecionado() {
+        int linha = jtListaM.getSelectedRow();
+        if (linha >= 0) {
+            return listMotorista.get(linha);
+        } else {
+            return null;
+        }
+    }
+    
+    public void pesquisarAction() {
+        String termo = tfPesquisa.getText();
+        listMotorista = motoristaDao.pesquisar(termo);
+        showItensTable();
+    }
+
 }
