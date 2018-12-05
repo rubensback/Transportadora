@@ -28,38 +28,53 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" pref="836" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="cbtipocnh" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="jbVoltar" min="-2" pref="77" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jbAdd" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jbEditar" min="-2" pref="77" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jbExcluir" min="-2" pref="77" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfNumcnh" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
-                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="tfEnd" alignment="0" pref="220" max="32767" attributes="0"/>
-                              <Component id="tfNasc" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tfNome" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tfNomedest" alignment="0" pref="220" max="32767" attributes="0"/>
+                              <Component id="tfEndrem" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tfNomerem" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="jbAdd" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jbEditar" min="-2" pref="77" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jbExcluir" min="-2" pref="77" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="tfPesquisa" max="32767" attributes="0"/>
+                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfData" pref="220" max="32767" attributes="0"/>
+                          <Component id="tfPeso" alignment="0" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="tfPesquisa" min="-2" pref="251" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="tfEnddest" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -79,35 +94,35 @@
                   <Component id="jbEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-              <Component id="tfNome" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tfNomerem" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfData" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfNasc" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfEndrem" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfPeso" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tfPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tfEnd" min="-2" max="-2" attributes="0"/>
+              <Component id="tfNomedest" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tfNumcnh" min="-2" max="-2" attributes="0"/>
+              <Component id="tfEnddest" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jbVoltar" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbtipocnh" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <Component id="jbVoltar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -121,20 +136,26 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jtListaM">
+        <Component class="javax.swing.JTable" name="jtListaO">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="0">
-                <Column editable="true" title="Id" type="java.lang.Integer"/>
-                <Column editable="true" title="Nome" type="java.lang.String"/>
-                <Column editable="true" title="Data de Nascimento" type="java.lang.String"/>
-                <Column editable="true" title="Endere&#xe7;o" type="java.lang.String"/>
-                <Column editable="true" title="Tipo da CNH" type="java.lang.Object"/>
-                <Column editable="true" title="N&#xfa;mero da CNH" type="java.lang.String"/>
+              <Table columnCount="7" rowCount="0">
+                <Column editable="true" title="C&#xf3;digo Localizador" type="java.lang.Integer"/>
+                <Column editable="true" title="Nome Remetente" type="java.lang.String"/>
+                <Column editable="true" title="Endere&#xe7;o Remetente" type="java.lang.String"/>
+                <Column editable="true" title="Nome Destinat&#xe1;rio" type="java.lang.String"/>
+                <Column editable="true" title="Endere&#xe7;o Destinat&#xe1;rio" type="java.lang.Object"/>
+                <Column editable="true" title="Data Dep&#xf3;sito" type="java.lang.Object"/>
+                <Column editable="true" title="Peso" type="java.lang.Float"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -179,7 +200,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Motoristas"/>
+        <Property name="text" type="java.lang.String" value="Objetos"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jbAdd">
@@ -216,46 +237,31 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nome"/>
+        <Property name="text" type="java.lang.String" value="Nome Remetente"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfNome">
+    <Component class="javax.swing.JTextField" name="tfNomerem">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Data de Nascimento"/>
+        <Property name="text" type="java.lang.String" value="Endere&#xe7;o do Remetente"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfNasc">
+    <Component class="javax.swing.JTextField" name="tfEndrem">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Endere&#xe7;o"/>
+        <Property name="text" type="java.lang.String" value="Nome do Destinat&#xe1;rio"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfEnd">
+    <Component class="javax.swing.JTextField" name="tfNomedest">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="N&#xfa;mero da CNH"/>
+        <Property name="text" type="java.lang.String" value="Endere&#xe7;o do Destinat&#xe1;rio"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfNumcnh">
-    </Component>
-    <Component class="javax.swing.JComboBox" name="cbtipocnh">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;A&quot;, &quot;B&quot;, &quot;AB&quot; })" type="code"/>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Tipo da CNH"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="tfEnddest">
     </Component>
     <Component class="javax.swing.JTextField" name="tfPesquisa">
       <Events>
@@ -266,6 +272,26 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Pesquisar"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Data Dep&#xf3;sito"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfData">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="01/01/01"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfDataActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Peso"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfPeso">
     </Component>
   </SubComponents>
 </Form>

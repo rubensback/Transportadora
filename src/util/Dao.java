@@ -14,15 +14,14 @@ import java.sql.ResultSet;
  * @author Rubens Back
  */
 public class Dao {
+
     protected PreparedStatement stmt;
     protected String sql = "";
     protected ResultSet res;
     protected boolean debug = true;
     protected Connection conexao;
-    
-        public Dao() {
+
+    public Dao() {
         conexao = Conexao.getConexao();
     }
 }
-
-

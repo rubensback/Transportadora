@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.6" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -28,29 +28,28 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" pref="836" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="cbtipocnh" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbTipo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jbVoltar" min="-2" pref="77" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfNumcnh" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
-                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="tfEnd" alignment="0" pref="220" max="32767" attributes="0"/>
-                              <Component id="tfNasc" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tfNome" alignment="0" max="32767" attributes="0"/>
-                          </Group>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfPlaca" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="tfAno" alignment="0" pref="220" max="32767" attributes="0"/>
+                              <Component id="tfModelo" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tfMarca" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jbAdd" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -58,7 +57,8 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jbExcluir" min="-2" pref="77" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="tfPesquisa" max="32767" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfPesquisa" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -81,32 +81,33 @@
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-              <Component id="tfNome" min="-2" max="-2" attributes="0"/>
+              <Component id="tfMarca" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfNasc" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="tfModelo" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
+                      <Component id="tfPesquisa" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tfEnd" min="-2" max="-2" attributes="0"/>
+              <Component id="tfAno" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tfNumcnh" min="-2" max="-2" attributes="0"/>
+              <Component id="tfPlaca" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jbVoltar" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbtipocnh" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jbVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbTipo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -121,16 +122,17 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jtListaM">
+        <Component class="javax.swing.JTable" name="jtListaV">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="0">
-                <Column editable="true" title="Id" type="java.lang.Integer"/>
-                <Column editable="true" title="Nome" type="java.lang.String"/>
-                <Column editable="true" title="Data de Nascimento" type="java.lang.String"/>
-                <Column editable="true" title="Endere&#xe7;o" type="java.lang.String"/>
-                <Column editable="true" title="Tipo da CNH" type="java.lang.Object"/>
-                <Column editable="true" title="N&#xfa;mero da CNH" type="java.lang.String"/>
+              <Table columnCount="7" rowCount="0">
+                <Column editable="true" title="ID Ve&#xed;culo" type="java.lang.Integer"/>
+                <Column editable="true" title="Marca" type="java.lang.String"/>
+                <Column editable="true" title="Modelo" type="java.lang.String"/>
+                <Column editable="true" title="Ano" type="java.lang.Integer"/>
+                <Column editable="true" title="Placa" type="java.lang.String"/>
+                <Column editable="true" title="Tipo" type="java.lang.String"/>
+                <Column editable="true" title="Carga M&#xe1;xima" type="java.lang.Integer"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -165,7 +167,15 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
               </TableColumnModel>
+            </Property>
+            <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+              <JTableSelectionModel selectionMode="0"/>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -179,7 +189,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Motoristas"/>
+        <Property name="text" type="java.lang.String" value="Ve&#xed;culos"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jbAdd">
@@ -216,46 +226,31 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nome"/>
+        <Property name="text" type="java.lang.String" value="Marca"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfNome">
+    <Component class="javax.swing.JTextField" name="tfMarca">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Data de Nascimento"/>
+        <Property name="text" type="java.lang.String" value="Modelo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfNasc">
+    <Component class="javax.swing.JTextField" name="tfModelo">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Endere&#xe7;o"/>
+        <Property name="text" type="java.lang.String" value="Ano"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfEnd">
+    <Component class="javax.swing.JTextField" name="tfAno">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="N&#xfa;mero da CNH"/>
+        <Property name="text" type="java.lang.String" value="Placa"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfNumcnh">
-    </Component>
-    <Component class="javax.swing.JComboBox" name="cbtipocnh">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;A&quot;, &quot;B&quot;, &quot;AB&quot; })" type="code"/>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Tipo da CNH"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="tfPlaca">
     </Component>
     <Component class="javax.swing.JTextField" name="tfPesquisa">
       <Events>
@@ -266,6 +261,21 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Pesquisar"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tipo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbTipo">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Van&quot;, &quot;Caminh&#xe3;o Ba&#xfa;&quot;, &quot;Carreta&quot;})" type="code"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

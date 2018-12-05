@@ -5,22 +5,26 @@
  */
 package view;
 
-import control.MotoristaControl;
+
+import control.VeiculoControl;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Rubens Back
  */
-public class ListaMotorista extends javax.swing.JFrame {
+public class ListaVeiculo extends javax.swing.JFrame {
     
-    private MotoristaControl control;
+    private VeiculoControl control;
 
     /**
      * Creates new form NewJFrame
      */
-    public ListaMotorista() {
+    public ListaVeiculo() {
         initComponents();
-        control = new MotoristaControl(tfNome,tfNasc,tfEnd,tfNumcnh,cbtipocnh,jtListaM,tfPesquisa);
+        control = new VeiculoControl(tfMarca,tfModelo,tfAno,tfPlaca,tfPesquisa,cbTipo,jtListaV);
         control.listarAction();
     }
 
@@ -34,47 +38,48 @@ public class ListaMotorista extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtListaM = new javax.swing.JTable();
+        jtListaV = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jbAdd = new javax.swing.JButton();
         jbEditar = new javax.swing.JButton();
         jbExcluir = new javax.swing.JButton();
         jbVoltar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        tfNome = new javax.swing.JTextField();
+        tfMarca = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        tfNasc = new javax.swing.JTextField();
+        tfModelo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        tfEnd = new javax.swing.JTextField();
+        tfAno = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        tfNumcnh = new javax.swing.JTextField();
-        cbtipocnh = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
+        tfPlaca = new javax.swing.JTextField();
         tfPesquisa = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        cbTipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jtListaM.setModel(new javax.swing.table.DefaultTableModel(
+        jtListaV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Nome", "Data de Nascimento", "Endereço", "Tipo da CNH", "Número da CNH"
+                "ID Veículo", "Marca", "Modelo", "Ano", "Placa", "Tipo", "Carga Máxima"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jtListaM);
+        jtListaV.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(jtListaV);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Motoristas");
+        jLabel1.setText("Veículos");
 
         jbAdd.setText("Adicionar");
         jbAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -104,17 +109,13 @@ public class ListaMotorista extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Nome");
+        jLabel2.setText("Marca");
 
-        jLabel3.setText("Data de Nascimento");
+        jLabel3.setText("Modelo");
 
-        jLabel4.setText("Endereço");
+        jLabel4.setText("Ano");
 
-        jLabel6.setText("Número da CNH");
-
-        cbtipocnh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "AB" }));
-
-        jLabel7.setText("Tipo da CNH");
+        jLabel6.setText("Placa");
 
         tfPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -123,6 +124,10 @@ public class ListaMotorista extends javax.swing.JFrame {
         });
 
         jLabel5.setText("Pesquisar");
+
+        jLabel8.setText("Tipo");
+
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Van", "Caminhão Baú", "Carreta"}));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,32 +138,32 @@ public class ListaMotorista extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbtipocnh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
+                            .addComponent(jLabel3)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(tfNumcnh, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
+                            .addComponent(tfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(tfEnd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                .addComponent(tfNasc, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(tfNome, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jLabel3))
+                                .addComponent(tfAno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                .addComponent(tfModelo, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tfMarca, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jbAdd)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5)
                             .addComponent(tfPesquisa))))
                 .addContainerGap())
         );
@@ -176,29 +181,30 @@ public class ListaMotorista extends javax.swing.JFrame {
                     .addComponent(jbExcluir)
                     .addComponent(jLabel2))
                 .addGap(1, 1, 1)
-                .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(12, 12, 12)
+                        .addComponent(tfModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(tfPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNumcnh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbVoltar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
-                        .addComponent(cbtipocnh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel8)
+                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -206,7 +212,7 @@ public class ListaMotorista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddActionPerformed
-        control.cadastrarAction();
+            control.cadastrarAction();
     }//GEN-LAST:event_jbAddActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
@@ -214,7 +220,7 @@ public class ListaMotorista extends javax.swing.JFrame {
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
-        control.alterarAction();
+            control.alterarAction();
     }//GEN-LAST:event_jbEditarActionPerformed
 
     private void tfPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisaKeyReleased
@@ -242,44 +248,50 @@ public class ListaMotorista extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaMotorista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaMotorista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaMotorista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaMotorista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListaMotorista().setVisible(true);
+                new ListaVeiculo().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbtipocnh;
+    private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAdd;
     private javax.swing.JButton jbEditar;
     private javax.swing.JButton jbExcluir;
     private javax.swing.JButton jbVoltar;
-    private javax.swing.JTable jtListaM;
-    private javax.swing.JTextField tfEnd;
-    private javax.swing.JTextField tfNasc;
-    private javax.swing.JTextField tfNome;
-    private javax.swing.JTextField tfNumcnh;
+    private javax.swing.JTable jtListaV;
+    private javax.swing.JTextField tfAno;
+    private javax.swing.JTextField tfMarca;
+    private javax.swing.JTextField tfModelo;
     private javax.swing.JTextField tfPesquisa;
+    private javax.swing.JTextField tfPlaca;
     // End of variables declaration//GEN-END:variables
 }

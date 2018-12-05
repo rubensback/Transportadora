@@ -5,28 +5,32 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author Rubens Back
  */
 public class Roteiro {
-    
+
     private int idr;
-    private Motorista idm;
-    private Veiculo idv;
-    private Objeto ido;
+    private Date datar;
+    private Motorista motorista;
+    private Veiculo veiculo;
+    private Objeto objeto;
 
     public Roteiro() {
-        idm = new Motorista();
-        idv = new Veiculo();
-        ido = new Objeto();
+        motorista = new Motorista();
+        veiculo = new Veiculo();
+        objeto = new Objeto();
     }
 
-    public Roteiro(int idr, Motorista idm, Veiculo idv, Objeto ido) {
+    public Roteiro(int idr, Date datar, Motorista motorista, Veiculo veiculo, Objeto objeto) {
         this.idr = idr;
-        this.idm = idm;
-        this.idv = idv;
-        this.ido = ido;
+        this.datar = datar;
+        this.motorista = motorista;
+        this.veiculo = veiculo;
+        this.objeto = objeto;
     }
 
     public int getIdr() {
@@ -37,28 +41,43 @@ public class Roteiro {
         this.idr = idr;
     }
 
-    public Motorista getIdm() {
-        return idm;
+    public Motorista getMotorista() {
+        return motorista;
     }
 
-    public void setIdm(Motorista idm) {
-        this.idm = idm;
+    public void setMotorista(Motorista idm) {
+        this.motorista = idm;
     }
 
-    public Veiculo getIdv() {
-        return idv;
+    public Veiculo getVeiculo() {
+        return veiculo;
     }
 
-    public void setIdv(Veiculo idv) {
-        this.idv = idv;
+    public void setVeiculo(Veiculo idv) {
+        this.veiculo = idv;
     }
 
-    public Objeto getIdo() {
-        return ido;
+    public Objeto getObjeto() {
+        return objeto;
     }
 
-    public void setIdo(Objeto ido) {
-        this.ido = ido;
+    public void setObjeto(Objeto ido) {
+        this.objeto = ido;
     }
+
+    public Date getDatar() {
+        return datar;
+    }
+
+    public void setDatar(Date datar) {
+        this.datar = datar;
+    }
+
+    @Override
+    public String toString() {
+        return "Roteiro: " + "Nº " + idr + "  /  Dia " + datar;
+    }
+    
+    
 
 }
