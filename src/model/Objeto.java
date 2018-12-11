@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -13,11 +14,14 @@ import java.util.Date;
  */
 public class Objeto {
     
+    SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yy");
+
     private int ido;
-    private String nomerem,enderecorem,nomedest,enderecodest;
+    private String nomerem, enderecorem, nomedest, enderecodest;
     private Date datadep;
     private double peso;
     private Veiculo idv;
+    private boolean status = false;
 
     public Objeto() {
         idv = new Veiculo();
@@ -97,5 +101,18 @@ public class Objeto {
     public void setIdv(Veiculo idv) {
         this.idv = idv;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Cód. Localizador: " + ido + "  //  Depósito: " + sdf1.format(datadep);
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
 }

@@ -28,9 +28,9 @@ public class MotoristaControl {
     //Veriáveis do model
     private Motorista motorista = null;
     private List<Motorista> listMotorista;
-    private MotoristaDao motoristaDao; //talvez tenha que instanciar no construtor
+    private MotoristaDao motoristaDao;
 
-    public MotoristaControl(JTextField tfNome, JTextField tfNasc, JTextField tfEnd, JTextField tfNumcnh, JComboBox cbtipocnh, JTable jtListaM,JTextField tfPesquisa) {
+    public MotoristaControl(JTextField tfNome, JTextField tfNasc, JTextField tfEnd, JTextField tfNumcnh, JComboBox cbtipocnh, JTable jtListaM, JTextField tfPesquisa) {
         this.tfNome = tfNome;
         this.tfNasc = tfNasc;
         this.tfEnd = tfEnd;
@@ -38,8 +38,7 @@ public class MotoristaControl {
         this.cbtipocnh = cbtipocnh;
         this.jtListaM = jtListaM;
         this.tfPesquisa = tfPesquisa;
-        
-        
+
         listMotorista = new ArrayList();
         motoristaDao = new MotoristaDao();
 
@@ -52,9 +51,8 @@ public class MotoristaControl {
         motorista.setNascimento(tfNasc.getText());
         motorista.setEndereco(tfEnd.getText());
         motorista.setNumcnh(tfNumcnh.getText());
-        motorista.setTipocnh((String) cbtipocnh.getSelectedItem()); //Conferir a conversão de Obj m/ String
+        motorista.setTipocnh((String) cbtipocnh.getSelectedItem());
 
-        //Salvar motorista no banco e verificar o retorno
         boolean res = motoristaDao.salvar(motorista);
         if (res) {
             JOptionPane.showMessageDialog(null, "Cadastrado!");
@@ -94,12 +92,12 @@ public class MotoristaControl {
             motorista.setNascimento(tfNasc.getText());
             motorista.setEndereco(tfEnd.getText());
             motorista.setNumcnh(tfNumcnh.getText());
-            motorista.setTipocnh((String) cbtipocnh.getSelectedItem()); //Conferir a conversão de Obj m/ String
+            motorista.setTipocnh((String) cbtipocnh.getSelectedItem()); 
 
             boolean res = motoristaDao.atualizar(motorista);
             if (res) {
                 JOptionPane.showMessageDialog(null, "Editado com sucesso.");
-                listarAction(); 
+                listarAction();
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao editar.");
             }
@@ -130,11 +128,24 @@ public class MotoristaControl {
             return null;
         }
     }
-    
-    public void pesquisarAction() {
+
+    public void pesquisarAction() throws Exception {
         String termo = tfPesquisa.getText();
         listMotorista = motoristaDao.pesquisar(termo);
         showItensTable();
     }
 
+    public void populaTextos() {
+        int lin = jtListaM.getSelectedRow();
+        String nome = jtListaM.getModel().getValueAt(lin, 1).toString();
+        String nasc = jtListaM.getModel().getValueAt(lin, 2).toString();
+        String end = jtListaM.getModel().getValueAt(lin, 3).toString();
+        String tipo = jtListaM.getModel().getValueAt(lin, 4).toString();
+        String num = jtListaM.getModel().getValueAt(lin, 5).toString();
+        tfNome.setText(nome);
+        tfNasc.setText(nasc);
+        tfEnd.setText(end);
+        cbtipocnh.setSelectedItem(tipo);
+        tfNumcnh.setText(num);
+    }
 }

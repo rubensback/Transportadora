@@ -82,5 +82,10 @@ public class Veiculo {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + idv + "  //  " + tipo + "  //  Carga Máxima - " + cargamax;
+    }
     
 }

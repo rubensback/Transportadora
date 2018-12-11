@@ -15,6 +15,7 @@ public class Menu extends javax.swing.JFrame {
     ListaVeiculo listaveiculo = new ListaVeiculo();
     ListaObjeto listaobjeto = new ListaObjeto();
     ListaRoteiro listaRoteiro = new ListaRoteiro();
+    CadastroRoteiro cadRoteiro = new CadastroRoteiro();
     
     public Menu() {
         initComponents();
@@ -36,27 +37,29 @@ public class Menu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jbSair = new javax.swing.JButton();
         jbRoteiros = new javax.swing.JButton();
+        jbCadRoteiro = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel1.setText("Transportadora Entrega Rápida");
 
-        jbVeiculo.setText("Veículo");
+        jbVeiculo.setText("Adicionar Veículo");
         jbVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbVeiculoActionPerformed(evt);
             }
         });
 
-        jbObjeto.setText("Objeto");
+        jbObjeto.setText("Adicionar Objeto");
         jbObjeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbObjetoActionPerformed(evt);
             }
         });
 
-        jbMotorista.setText("Motorista");
+        jbMotorista.setText("Adicionar Motorista");
         jbMotorista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbMotoristaActionPerformed(evt);
@@ -80,48 +83,64 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jbCadRoteiro.setText("Adicionar Dia");
+        jbCadRoteiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCadRoteiroActionPerformed(evt);
+            }
+        });
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(0, 53, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbSair))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jbSair)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbCadRoteiro, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(31, 31, 31)
+                            .addComponent(jLabel2))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jbObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbRoteiros, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90)))
-                .addContainerGap())
+                            .addComponent(jbMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbRoteiros, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbRoteiros, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jbObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 60, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbCadRoteiro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbRoteiros, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(112, 112, 112)))
                 .addComponent(jbSair)
                 .addContainerGap())
         );
@@ -149,6 +168,10 @@ public class Menu extends javax.swing.JFrame {
     private void jbRoteirosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRoteirosActionPerformed
         listaRoteiro.setVisible(true);
     }//GEN-LAST:event_jbRoteirosActionPerformed
+
+    private void jbCadRoteiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadRoteiroActionPerformed
+        cadRoteiro.setVisible(true);
+    }//GEN-LAST:event_jbCadRoteiroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,6 +211,8 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JButton jbCadRoteiro;
     private javax.swing.JButton jbMotorista;
     private javax.swing.JButton jbObjeto;
     private javax.swing.JButton jbRoteiros;

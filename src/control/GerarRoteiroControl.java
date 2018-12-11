@@ -16,11 +16,13 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import model.Motorista;
 import model.Objeto;
-import model.Roteiro;
+import model.RoteiroData;
+import model.RoteiroLista;
 import model.Veiculo;
 import model.dao.GerarRoteiroDao;
 import model.dao.MotoristaDao;
 import model.dao.ObjetoDao;
+import model.dao.RoteiroDataDao;
 import model.dao.VeiculoDao;
 
 /**
@@ -29,37 +31,38 @@ import model.dao.VeiculoDao;
  */
 public class GerarRoteiroControl {
 
-    SimpleDateFormat sdf1 = new SimpleDateFormat("dd/mm/yy");
 
-    private JTable tbMotorista;
-    private JTable tbVeiculo;
-    private JTable tbObjeto;
-    private JTextField tfIdr;
-    private JTextField tfDatar;
-    private JComboBox<Roteiro> cbRoteiro; // talvez precise ser <Roteiro>
+    private JComboBox<RoteiroData> cbRoteiroData;
+    private JComboBox<Motorista> cbMotorista;
+    private JComboBox<Veiculo> cbVeiculo;
+    private JComboBox<Objeto> cbObjeto;
 
-    private Roteiro roteiro = null;
+    private RoteiroLista roteiro = null;
     private Motorista motorista = null;
     private Veiculo veiculo = null;
     private Objeto objeto = null;
 
+    private List<RoteiroData> listRoteiroData;
     private List<Motorista> listMotorista;
     private List<Veiculo> listVeiculo;
     private List<Objeto> listObjeto;
 
     private GerarRoteiroDao grDao;
+    private RoteiroDataDao roteiroDataDao;
     private MotoristaDao motoristaDao;
     private VeiculoDao veiculoDao;
     private ObjetoDao objetoDao;
 
-    public GerarRoteiroControl(JTable tbMotorista, JTable tbVeiculo, JTable tbObjeto, JTextField tfIdr, JTextField tfDatar, JComboBox<Roteiro> cbRoteiro) {
-        this.tbMotorista = tbMotorista;
-        this.tbVeiculo = tbVeiculo;
-        this.tbObjeto = tbObjeto;
-        this.tfIdr = tfIdr;
-        this.tfDatar = tfDatar;
-        this.cbRoteiro = cbRoteiro;
+    public GerarRoteiroControl() {
+    }
 
+    public GerarRoteiroControl(JComboBox cbRoteiroData, JComboBox cbMotorista, JComboBox cbVeiculo, JComboBox cbObjeto) {
+        this.cbRoteiroData = cbRoteiroData;
+        this.cbMotorista = cbMotorista;
+        this.cbVeiculo = cbVeiculo;
+        this.cbObjeto = cbObjeto;
+
+        listRoteiroData = new ArrayList<>();
         listMotorista = new ArrayList<>();
         listVeiculo = new ArrayList<>();
         listObjeto = new ArrayList<>();
@@ -67,135 +70,57 @@ public class GerarRoteiroControl {
         veiculoDao = new VeiculoDao();
         objetoDao = new ObjetoDao();
         grDao = new GerarRoteiroDao();
+        roteiroDataDao = new RoteiroDataDao();
+        //rControl = new RoteiroControl();
+        
     }
 
-    /*
-    //preenche o objeto...
-        // Suponhamos que você tenha um dataTable na sua página onde guarda os registros
-        // dos contatos dos clientes. Então, você pega os valores desse dataTable e adiciona
-        // à coleção de contatos dos clientes. É só um exemplo, mas você faz do seu jeito:
-        for (Contato contatoEntity : request.getParameter("CONTATOS")) {
-            entityCliente.getContatos().add(contatoEntity);
-        }
-        // Se você tá adicionando o cliente junto, você chama o [b]create[/b] do DAOCliente.
-        daoCliente.create(entityCliente);
-        for (Contato contatoEntity : daoCliente.getContatos()) {
-            contatoEntity.setCliente(entityCliente.getID()); //<-- referencia o ID do cliente no objeto.
-            daoContato.create(contato); // <-- adiciona o contato à tabela.
-        }*/
-    public void cadastrarAction() throws ParseException {
+    public void cadastrarComboAction() throws Exception {
         //Montar novo objeto
-
-        roteiro = new Roteiro();
-        roteiro.setIdr(Integer.parseInt(tfIdr.getText()));
-        roteiro.setDatar(sdf1.parse(tfDatar.getText()));
-        roteiro.setMotorista((Motorista) getMSelecionado());
-        roteiro.setVeiculo((Veiculo) getVSelecionado());
-        roteiro.setObjeto((Objeto) getOSelecionado());
-        /*if ((tfIdr.getText() == null) && (tfDatar.getText()) == null) {
-            for (int i = 0; i < cbRoteiro.getModel().getSize(); i++) {
-                Roteiro r = cbRoteiro.getModel().getElementAt(i);
-                if (roteiro.getIdr() == r.getIdr()) {
-                    cbRoteiro.setSelectedIndex(i);
-                    break;
-                }
+        boolean res = false;
+        roteiro = new RoteiroLista();
+        roteiro.setRoteiroData((RoteiroData) cbRoteiroData.getSelectedItem());
+        roteiro.setMotorista((Motorista) cbMotorista.getSelectedItem());
+        roteiro.setVeiculo((Veiculo) cbVeiculo.getSelectedItem());
+        roteiro.setObjeto((Objeto) cbObjeto.getSelectedItem());
+        
+        if(roteiro.getVeiculo().getTipo().equals("Van")){
+            if((roteiro.getMotorista().getTipocnh().equals("B")) || (roteiro.getMotorista().getTipocnh().equals("C")) || (roteiro.getMotorista().getTipocnh().equals("BC"))){
+                res = grDao.salvar(roteiro);
+            }                
+        }else if((roteiro.getVeiculo().getTipo().equals("Caminhão Baú")) || ((roteiro.getVeiculo().getTipo().equals("Carreta")))){
+            if(roteiro.getMotorista().getTipocnh().equals("C") || (roteiro.getMotorista().getTipocnh().equals("BC"))){
+                res = grDao.salvar(roteiro);
             }
-            roteiro.setIdr(cbRoteiro.getSelectedIndex());
-        }*/
-    
-
-        boolean res = grDao.salvar(roteiro);
+        }else{
+            System.out.println("Este motorista não pode dirigir este veículo");
+        }
+        
         if (res) {
-            JOptionPane.showMessageDialog(null, "Cadastrado!");
+            JOptionPane.showMessageDialog(null, "Gerado!");
+            
         } else {
             JOptionPane.showMessageDialog(null, "Erro");
         }
     }
 
-    public void PopularCbRoteiroAction() {
-        cbRoteiro.removeAllItems();
-        for (Roteiro r : grDao.listar()) {
-            cbRoteiro.addItem(r);
+    public void mostrarCombos() {
+        cbRoteiroData.removeAllItems();
+        for (RoteiroData r : roteiroDataDao.listar()) {
+            cbRoteiroData.addItem(r);
+        }        
+        cbMotorista.removeAllItems();
+        for (Motorista m : motoristaDao.listar()) {
+            cbMotorista.addItem(m);
+        }        
+        cbVeiculo.removeAllItems();
+        for (Veiculo v : veiculoDao.listar()) {
+            cbVeiculo.addItem(v);
+        }        
+        cbObjeto.removeAllItems();
+        for (Objeto o : objetoDao.listar()) {
+            cbObjeto.addItem(o);
         }
     }
 
-    private Motorista getMSelecionado() {
-        int linhaM = tbMotorista.getSelectedRow();
-        if (linhaM >= 0) {
-            return listMotorista.get(linhaM);
-        } else {
-            return null;
-        }
-    }
-
-    private Veiculo getVSelecionado() {
-        int linhaV = tbVeiculo.getSelectedRow();
-        if (linhaV >= 0) {
-            return listVeiculo.get(linhaV);
-        } else {
-            return null;
-        }
-    }
-
-    private Objeto getOSelecionado() {
-        int linhaO = tbMotorista.getSelectedRow();
-        if (linhaO >= 0) {
-            return listObjeto.get(linhaO);
-        } else {
-            return null;
-        }
-    }
-
-    public void listarMotoristaAction() {
-        listMotorista = motoristaDao.listar();
-        showMotoristaItensTable();
-    }
-
-    private void showMotoristaItensTable() {
-        DefaultTableModel model;
-        model = (DefaultTableModel) tbMotorista.getModel();
-        model.setNumRows(0);
-        for (Motorista m : listMotorista) {
-            model.addRow(new Object[]{
-                m.getIdm(),
-                m.getNome(),
-                m.getTipocnh()
-            });
-        }
-    }
-
-    public void listarVeiculoAction() {
-        listVeiculo = veiculoDao.listar();
-        showVeiculoItensTable();
-    }
-
-    private void showVeiculoItensTable() {
-        DefaultTableModel model;
-        model = (DefaultTableModel) tbVeiculo.getModel();
-        model.setNumRows(0);
-        for (Veiculo v : listVeiculo) {
-            model.addRow(new Object[]{
-                v.getIdv(),
-                v.getTipo(),
-                v.getCargamax()
-            });
-        }
-    }
-
-    public void listarObjetoAction() {
-        listObjeto = objetoDao.listar();
-        showObjetoItensTable();
-    }
-
-    private void showObjetoItensTable() {
-        DefaultTableModel model;
-        model = (DefaultTableModel) tbObjeto.getModel();
-        model.setNumRows(0);
-        for (Objeto o : listObjeto) {
-            model.addRow(new Object[]{
-                o.getIdo(),
-                o.getDatadep()
-            });
-        }
-    }
 }

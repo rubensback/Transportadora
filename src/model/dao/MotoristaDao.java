@@ -64,12 +64,10 @@ public class MotoristaDao extends Dao implements DaoI<Motorista> {
             stmt.setString(4, obj.getNumcnh());
             stmt.setString(5, obj.getTipocnh());
             stmt.setInt(6, obj.getIdm());
-            return stmt.executeUpdate()>0;
+            return stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return false;
-        } finally {
-            if(debug)  System.out.println(sql);
         }
     }
 
@@ -113,10 +111,6 @@ public class MotoristaDao extends Dao implements DaoI<Motorista> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return null;
-        } finally {
-            if (debug) {
-                System.out.println(sql);
-            }
         }
     }
 
@@ -124,8 +118,8 @@ public class MotoristaDao extends Dao implements DaoI<Motorista> {
     public Motorista lerPorId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public List<Motorista> pesquisar(String termo) {
+
+    public List<Motorista> pesquisar(String termo) throws Exception {
         this.sql = "SELECT "
                 + " idmotorista, nome, nascimento,endereco,tipocnh,numcnh "
                 + " FROM "
@@ -136,14 +130,14 @@ public class MotoristaDao extends Dao implements DaoI<Motorista> {
         try {
             this.stmt = conexao.prepareStatement(this.sql);
             this.stmt.setString(1, termo);
-            this.stmt.setString(2, termo+"%");
-            this.stmt.setString(3, termo+"%");
-            this.stmt.setString(4, termo+"%");
-            this.stmt.setString(5, termo+"%");
-            this.stmt.setString(6, termo+"%");
+            this.stmt.setString(2, termo + "%");
+            this.stmt.setString(3, termo + "%");
+            this.stmt.setString(4, termo + "%");
+            this.stmt.setString(5, termo + "%");
+            this.stmt.setString(6, termo + "%");
             res = this.stmt.executeQuery();
             List<Motorista> lista = new ArrayList<>();
-            while(res.next()){
+            while (res.next()) {
                 Motorista m = new Motorista();
                 m.setIdm(res.getInt("idmotorista"));
                 m.setNome(res.getString("nome"));
@@ -157,11 +151,8 @@ public class MotoristaDao extends Dao implements DaoI<Motorista> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return null;
-        } finally{
-            if(debug){
-                System.out.println(sql);
-            }
+        } finally {
+            Conexao.fechaConexao(conexao, stmt, res);
         }
     }
-
 }

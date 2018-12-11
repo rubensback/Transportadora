@@ -71,6 +71,11 @@ public class ListaMotorista extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jtListaM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtListaMMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtListaM);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -112,7 +117,7 @@ public class ListaMotorista extends javax.swing.JFrame {
 
         jLabel6.setText("Número da CNH");
 
-        cbtipocnh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "AB" }));
+        cbtipocnh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "B", "C", "BC" }));
 
         jLabel7.setText("Tipo da CNH");
 
@@ -224,6 +229,10 @@ public class ListaMotorista extends javax.swing.JFrame {
     private void jbVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVoltarActionPerformed
         dispose();
     }//GEN-LAST:event_jbVoltarActionPerformed
+
+    private void jtListaMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtListaMMouseClicked
+      control.populaTextos();
+    }//GEN-LAST:event_jtListaMMouseClicked
 
     /**
      * @param args the command line arguments

@@ -5,7 +5,6 @@
  */
 package view;
 
-
 import control.ObjetoControl;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -16,7 +15,7 @@ import java.util.logging.Logger;
  * @author Rubens Back
  */
 public class ListaObjeto extends javax.swing.JFrame {
-    
+
     private ObjetoControl control;
 
     /**
@@ -24,7 +23,7 @@ public class ListaObjeto extends javax.swing.JFrame {
      */
     public ListaObjeto() {
         initComponents();
-        control = new ObjetoControl(tfNomerem,tfEndrem,tfNomedest,tfEnddest,tfData,tfPeso,tfPesquisa,jtListaO);
+        control = new ObjetoControl(tfNomerem, tfEndrem, tfNomedest, tfEnddest, tfData, tfPeso, tfPesquisa, jtListaO);
         control.listarAction();
     }
 
@@ -75,6 +74,11 @@ public class ListaObjeto extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        jtListaO.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtListaOMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jtListaO);
@@ -260,6 +264,10 @@ public class ListaObjeto extends javax.swing.JFrame {
     private void jbVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVoltarActionPerformed
         dispose();
     }//GEN-LAST:event_jbVoltarActionPerformed
+
+    private void jtListaOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtListaOMouseClicked
+        control.populaTextos();
+    }//GEN-LAST:event_jtListaOMouseClicked
 
     /**
      * @param args the command line arguments

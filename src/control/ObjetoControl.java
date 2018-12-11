@@ -20,7 +20,7 @@ import model.dao.ObjetoDao;
  */
 public class ObjetoControl{
 
-    SimpleDateFormat sdf1 = new SimpleDateFormat("dd/mm/yy");
+    SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yy");
 
     //Variáveis do view
     private JTextField tfNomerem;
@@ -143,6 +143,22 @@ public class ObjetoControl{
         String termo = tfPesquisa.getText();
         listObjeto = objetoDao.pesquisar(termo);
         showItensTable();
+    }
+    
+    public void populaTextos(){
+        int lin = jtListaO.getSelectedRow();
+        String nr = jtListaO.getModel().getValueAt(lin, 1).toString();
+        String er = jtListaO.getModel().getValueAt(lin, 2).toString();
+        String nd = jtListaO.getModel().getValueAt(lin, 3).toString();
+        String ed = jtListaO.getModel().getValueAt(lin, 4).toString();
+        String data = jtListaO.getModel().getValueAt(lin, 5).toString();
+        String peso = jtListaO.getModel().getValueAt(lin, 6).toString();
+        tfNomerem.setText(nr);
+        tfEndrem.setText(er);
+        tfNomedest.setText(nd);
+        tfEnddest.setText(ed);
+        tfData.setText(data);
+        tfPeso.setText(peso);
     }
 
 }

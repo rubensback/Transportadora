@@ -11,34 +11,42 @@ import java.util.Date;
  *
  * @author Rubens Back
  */
-public class Roteiro {
+public class RoteiroLista {
 
-    private int idr;
-    private Date datar;
+    private int idrl;
+    private RoteiroData roteiroData;
     private Motorista motorista;
     private Veiculo veiculo;
     private Objeto objeto;
 
-    public Roteiro() {
+    public RoteiroLista() {
+        roteiroData = new RoteiroData();
         motorista = new Motorista();
         veiculo = new Veiculo();
         objeto = new Objeto();
     }
 
-    public Roteiro(int idr, Date datar, Motorista motorista, Veiculo veiculo, Objeto objeto) {
-        this.idr = idr;
-        this.datar = datar;
+    public RoteiroLista(int idrl, RoteiroData roteiroData, Motorista motorista, Veiculo veiculo, Objeto objeto) {
+        this.idrl = idrl;
         this.motorista = motorista;
         this.veiculo = veiculo;
         this.objeto = objeto;
     }
 
-    public int getIdr() {
-        return idr;
+    public int getIdrl() {
+        return idrl;
     }
 
-    public void setIdr(int idr) {
-        this.idr = idr;
+    public void setIdrl(int idrl) {
+        this.idrl = idrl;
+    }
+
+    public RoteiroData getRoteiroData() {
+        return roteiroData;
+    }
+
+    public void setRoteiroData(RoteiroData roteiroData) {
+        this.roteiroData = roteiroData;
     }
 
     public Motorista getMotorista() {
@@ -64,20 +72,4 @@ public class Roteiro {
     public void setObjeto(Objeto ido) {
         this.objeto = ido;
     }
-
-    public Date getDatar() {
-        return datar;
-    }
-
-    public void setDatar(Date datar) {
-        this.datar = datar;
-    }
-
-    @Override
-    public String toString() {
-        return "Roteiro: " + "Nº " + idr + "  /  Dia " + datar;
-    }
-    
-    
-
 }

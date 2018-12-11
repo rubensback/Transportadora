@@ -6,11 +6,12 @@
 package view;
 
 import control.GerarRoteiroControl;
+import control.RoteiroDataControl;
 import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Roteiro;
+import model.RoteiroLista;
 import model.dao.GerarRoteiroDao;
 
 /**
@@ -18,24 +19,19 @@ import model.dao.GerarRoteiroDao;
  * @author Rubens Back
  */
 public class GerarRoteiro extends javax.swing.JFrame {
-    
+
     GerarRoteiroControl grControl;
-    Roteiro roteiro;
+    RoteiroLista roteiro;
+
     /**
      * Creates new form GerarRoteiro
      */
     public GerarRoteiro() {
         initComponents();
-        
-        grControl = new GerarRoteiroControl(tbMotorista,tbVeiculo,tbObjeto,tfIdr,tfDataR,cbRoteiro);
-        grControl.listarMotoristaAction();
-        grControl.listarVeiculoAction();
-        grControl.listarObjetoAction();
-        grControl.PopularCbRoteiroAction();
-        
-                
-        
-        
+
+        grControl = new GerarRoteiroControl(cbRoteiroData, cbMotorista, cbVeiculo, cbObjeto);
+        grControl.mostrarCombos();
+
     }
 
     /**
@@ -50,21 +46,17 @@ public class GerarRoteiro extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbMotorista = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbVeiculo = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tbObjeto = new javax.swing.JTable();
-        tfIdr = new javax.swing.JTextField();
-        tfDataR = new javax.swing.JTextField();
-        cbRoteiro = new javax.swing.JComboBox<>();
         jbGerar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jbVoltar = new javax.swing.JButton();
+        cbRoteiroData = new javax.swing.JComboBox<>();
+        cbMotorista = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        cbVeiculo = new javax.swing.JComboBox<>();
+        cbObjeto = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -77,58 +69,6 @@ public class GerarRoteiro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tbMotorista.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "ID Motorista", "Nome", "Tipo CNH"
-            }
-        ));
-        jScrollPane1.setViewportView(tbMotorista);
-        if (tbMotorista.getColumnModel().getColumnCount() > 0) {
-            tbMotorista.getColumnModel().getColumn(2).setResizable(false);
-        }
-
-        tbVeiculo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "ID Veiculo", "Nome", "Tipo CNH"
-            }
-        ));
-        jScrollPane2.setViewportView(tbVeiculo);
-        if (tbVeiculo.getColumnModel().getColumnCount() > 0) {
-            tbVeiculo.getColumnModel().getColumn(2).setResizable(false);
-        }
-
-        tbObjeto.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Código Localizador", "Data Depósito"
-            }
-        ));
-        jScrollPane3.setViewportView(tbObjeto);
-
-        cbRoteiro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbRoteiroActionPerformed(evt);
-            }
-        });
-
-        jbGerar.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jbGerar.setText("Gerar");
         jbGerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,100 +79,113 @@ public class GerarRoteiro extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Geração de Roteiros");
 
-        jLabel2.setText("ID");
+        jbVoltar.setText("Voltar");
+        jbVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbVoltarActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setText("Data");
+        cbRoteiroData.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel4.setText("NOVO ROTEIRO:");
+        cbMotorista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbMotorista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMotoristaActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setText("SELECIONAR ROTEIRO");
+        jLabel2.setText("Roteiro");
+
+        cbVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbObjeto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel3.setText("Motorista");
+
+        jLabel5.setText("Veiculo");
+
+        jLabel6.setText("Objeto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbRoteiro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel2))
-                                        .addGap(14, 14, 14)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(tfDataR, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                            .addComponent(tfIdr)))
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jbGerar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap(169, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel5))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(cbRoteiroData, 0, 200, Short.MAX_VALUE)
+                                .addComponent(cbMotorista, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbVeiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jbGerar, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(cbObjeto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(192, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbVoltar))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfIdr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(tfDataR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbRoteiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                    .addComponent(jbGerar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbRoteiroData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addComponent(jbGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addComponent(jbVoltar))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbRoteiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRoteiroActionPerformed
-        
-    }//GEN-LAST:event_cbRoteiroActionPerformed
-
     private void jbGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGerarActionPerformed
         try {
-            grControl.cadastrarAction();
-        } catch (ParseException ex) {
+            grControl.cadastrarComboAction();
+            dispose();
+        } catch (Exception ex) {
             Logger.getLogger(GerarRoteiro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbGerarActionPerformed
+
+    private void jbVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVoltarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbVoltarActionPerformed
+
+    private void cbMotoristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMotoristaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbMotoristaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,23 +223,19 @@ public class GerarRoteiro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Roteiro> cbRoteiro;
+    private javax.swing.JComboBox<String> cbMotorista;
+    private javax.swing.JComboBox<String> cbObjeto;
+    private javax.swing.JComboBox<String> cbRoteiroData;
+    private javax.swing.JComboBox<String> cbVeiculo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jbGerar;
-    private javax.swing.JTable tbMotorista;
-    private javax.swing.JTable tbObjeto;
-    private javax.swing.JTable tbVeiculo;
-    private javax.swing.JTextField tfDataR;
-    private javax.swing.JTextField tfIdr;
+    private javax.swing.JButton jbVoltar;
     // End of variables declaration//GEN-END:variables
 }

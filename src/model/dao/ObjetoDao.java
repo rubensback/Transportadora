@@ -54,7 +54,7 @@ public class ObjetoDao extends Dao implements DaoI<Objeto> {
                 + " nomerem = ?,"
                 + " enderecorem = ?,"
                 + " nomedest = ?,"
-                + " enderecorem = ?,"
+                + " enderecodest = ?,"
                 + " datadep = ?,"
                 + " peso = ?"
                 + " WHERE "
@@ -64,7 +64,7 @@ public class ObjetoDao extends Dao implements DaoI<Objeto> {
             stmt.setString(1, obj.getNomerem());
             stmt.setString(2, obj.getEnderecorem());
             stmt.setString(3, obj.getNomedest());
-            stmt.setString(4, obj.getNomedest());
+            stmt.setString(4, obj.getEnderecodest());
             stmt.setDate(5, new java.sql.Date(obj.getDatadep().getTime()));
             stmt.setDouble(6, obj.getPeso());
             stmt.setInt(7, obj.getIdo());

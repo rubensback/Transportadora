@@ -150,5 +150,19 @@ public class VeiculoControl{
             tipo.setCargamax(10);
         }
     }
+    
+    public void populaTextos(){
+        int lin = jtListaV.getSelectedRow();
+        String marca = jtListaV.getModel().getValueAt(lin, 1).toString();
+        String modelo = jtListaV.getModel().getValueAt(lin, 2).toString();
+        String ano = jtListaV.getModel().getValueAt(lin, 3).toString();
+        String placa = jtListaV.getModel().getValueAt(lin, 4).toString();
+        String tipo = jtListaV.getModel().getValueAt(lin, 5).toString();
+        tfMarca.setText(marca);
+        tfModelo.setText(modelo);
+        tfAno.setText(ano);
+        tfPlaca.setText(placa);
+        cbTipo.setSelectedItem(tipo);
+    }
 
 }

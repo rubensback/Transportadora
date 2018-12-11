@@ -73,6 +73,11 @@ public class Motorista {
     public void setNumcnh(String numcnh) {
         this.numcnh = numcnh;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + idm + "  //  " + nome + "  //  Tipo CNH: " + tipocnh;
+    }
     
     
 }

@@ -171,6 +171,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtListaMMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -245,7 +248,7 @@
     <Component class="javax.swing.JComboBox" name="cbtipocnh">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;A&quot;, &quot;B&quot;, &quot;AB&quot; })" type="code"/>
+          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;B&quot;, &quot;C&quot;, &quot;BC&quot; })" type="code"/>
         </Property>
       </Properties>
       <AuxValues>

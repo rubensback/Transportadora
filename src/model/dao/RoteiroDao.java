@@ -10,8 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import model.Roteiro;
+import model.RoteiroLista;
 import util.Conexao;
 import util.Dao;
 
@@ -19,7 +20,7 @@ import util.Dao;
  *
  * @author Rubens Back
  */
-public class RoteiroDao extends Dao{
+public class RoteiroDao extends Dao {
 
     private Connection conn = null;
     private PreparedStatement stmt = null;
@@ -28,23 +29,26 @@ public class RoteiroDao extends Dao{
     public RoteiroDao() {
         super();
     }
-    
-    public List<Roteiro> listar() {
+
+    public List<RoteiroLista> listar() {
         this.sql = "SELECT "
-                + " idroteiro,id_motorista,id_veiculo,id_objeto"
+                + " datar,id_motorista,id_veiculo,id_objeto,idroteirolista"
                 + " FROM "
-                + " roteiro"
-                + " ORDER BY idroteiro DESC";
+                + " roteirolista"
+                + " INNER JOIN roteirodata"
+                + " ON id_roteirodata = idroteirodata"
+                + " ORDER BY datar";
         try {
             this.stmt = conexao.prepareStatement(this.sql);
             res = this.stmt.executeQuery();
-            List<Roteiro> lista = new ArrayList<>();
+            List<RoteiroLista> lista = new ArrayList<>();
             while (res.next()) {
-                Roteiro r = new Roteiro();
-                r.setIdr(res.getInt("idroteiro"));
+                RoteiroLista r = new RoteiroLista();
+                r.getRoteiroData().setDatar(res.getDate("datar"));
                 r.getMotorista().setIdm(res.getInt("id_motorista"));
                 r.getVeiculo().setIdv(res.getInt("id_veiculo"));
                 r.getObjeto().setIdo(res.getInt("id_objeto"));
+                r.setIdrl(res.getInt("idroteirolista"));
                 lista.add(r);
             }
             return lista;
@@ -57,6 +61,147 @@ public class RoteiroDao extends Dao{
             }
         }
     }
+
+    public boolean excluir(RoteiroLista obj) {
+        this.sql = "DELETE FROM roteirolista WHERE idroteirolista = ?";
+        try {
+            stmt = conexao.prepareStatement(this.sql);
+            stmt.setInt(1, obj.getIdrl());
+            //stmt.setInt(1, obj.getRoteiroData().getIdr());
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        } finally {
+            if (debug) {
+                System.out.println(sql);
+            }
+        }
+    }
+
+    public boolean fazerEntrega(RoteiroLista obj) {
+        this.sql = "DELETE FROM roteirolista WHERE idroteirolista = ?";
+        try {
+            stmt = conexao.prepareStatement(this.sql);
+            stmt.setInt(1, obj.getIdrl());
+            //stmt.setInt(1, obj.getRoteiroData().getIdr());
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        } finally {
+            if (debug) {
+                System.out.println(sql);
+            }
+        }
+    }
+
+    public boolean fazerEntrega2(RoteiroLista obj) {
+        this.sql = "DELETE FROM objeto WHERE idobjeto = ?";
+
+        try {
+            stmt = conexao.prepareStatement(this.sql);
+            stmt.setInt(1, obj.getObjeto().getIdo());
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        } finally {
+            if (debug) {
+                System.out.println(sql);
+            }
+        }
+    }
+
+    public List<RoteiroLista> pesquisarM(String termo) {
+        this.sql = "SELECT "
+                + " datar,id_motorista,id_veiculo,id_objeto,idroteirolista"
+                + " FROM "
+                + " roteirolista"
+                + " INNER JOIN roteirodata"
+                + " ON id_roteirodata = idroteirodata"
+                + " WHERE id_motorista = ?"
+                + " ORDER BY datar";
+        try {
+            this.stmt = conexao.prepareStatement(this.sql);
+            this.stmt.setString(1, termo);
+            res = this.stmt.executeQuery();
+            List<RoteiroLista> lista = new ArrayList<>();
+            while (res.next()) {
+                RoteiroLista r = new RoteiroLista();
+                r.getRoteiroData().setDatar(res.getDate("datar"));
+                r.getMotorista().setIdm(res.getInt("id_motorista"));
+                r.getVeiculo().setIdv(res.getInt("id_veiculo"));
+                r.getObjeto().setIdo(res.getInt("id_objeto"));
+                r.setIdrl(res.getInt("idroteirolista"));
+                lista.add(r);
+            }
+            return lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    public List<RoteiroLista> pesquisarV(String termo) {
+        this.sql = "SELECT "
+                + " datar,id_motorista,id_veiculo,id_objeto,idroteirolista"
+                + " FROM "
+                + " roteirolista"
+                + " INNER JOIN roteirodata"
+                + " ON id_roteirodata = idroteirodata"
+                + " WHERE id_veiculo = ?"
+                + " ORDER BY datar";
+        try {
+            this.stmt = conexao.prepareStatement(this.sql);
+            this.stmt.setString(1, termo);
+            res = this.stmt.executeQuery();
+            List<RoteiroLista> lista = new ArrayList<>();
+            while (res.next()) {
+                RoteiroLista r = new RoteiroLista();
+                r.getRoteiroData().setDatar(res.getDate("datar"));
+                r.getMotorista().setIdm(res.getInt("id_motorista"));
+                r.getVeiculo().setIdv(res.getInt("id_veiculo"));
+                r.getObjeto().setIdo(res.getInt("id_objeto"));
+                r.setIdrl(res.getInt("idroteirolista"));
+                lista.add(r);
+            }
+            return lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    public List<RoteiroLista> pesquisarO(String termo) {
+        this.sql = "SELECT "
+                + " datar,id_motorista,id_veiculo,id_objeto,idroteirolista"
+                + " FROM "
+                + " roteirolista"
+                + " INNER JOIN roteirodata"
+                + " ON id_roteirodata = idroteirodata"
+                + " WHERE id_objeto = ?"
+                + " ORDER BY datar";
+        try {
+            this.stmt = conexao.prepareStatement(this.sql);
+            this.stmt.setString(1, termo);
+            res = this.stmt.executeQuery();
+            List<RoteiroLista> lista = new ArrayList<>();
+            while (res.next()) {
+                RoteiroLista r = new RoteiroLista();
+                r.getRoteiroData().setDatar(res.getDate("datar"));
+                r.getMotorista().setIdm(res.getInt("id_motorista"));
+                r.getVeiculo().setIdv(res.getInt("id_veiculo"));
+                r.getObjeto().setIdo(res.getInt("id_objeto"));
+                r.setIdrl(res.getInt("idroteirolista"));
+                lista.add(r);
+            }
+            return lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 }
-    
-    

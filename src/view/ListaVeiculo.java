@@ -5,7 +5,6 @@
  */
 package view;
 
-
 import control.VeiculoControl;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -16,7 +15,7 @@ import java.util.logging.Logger;
  * @author Rubens Back
  */
 public class ListaVeiculo extends javax.swing.JFrame {
-    
+
     private VeiculoControl control;
 
     /**
@@ -24,7 +23,7 @@ public class ListaVeiculo extends javax.swing.JFrame {
      */
     public ListaVeiculo() {
         initComponents();
-        control = new VeiculoControl(tfMarca,tfModelo,tfAno,tfPlaca,tfPesquisa,cbTipo,jtListaV);
+        control = new VeiculoControl(tfMarca, tfModelo, tfAno, tfPlaca, tfPesquisa, cbTipo, jtListaV);
         control.listarAction();
     }
 
@@ -76,6 +75,11 @@ public class ListaVeiculo extends javax.swing.JFrame {
             }
         });
         jtListaV.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jtListaV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtListaVMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtListaV);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -212,7 +216,7 @@ public class ListaVeiculo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddActionPerformed
-            control.cadastrarAction();
+        control.cadastrarAction();
     }//GEN-LAST:event_jbAddActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
@@ -220,7 +224,7 @@ public class ListaVeiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
-            control.alterarAction();
+        control.alterarAction();
     }//GEN-LAST:event_jbEditarActionPerformed
 
     private void tfPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisaKeyReleased
@@ -230,6 +234,10 @@ public class ListaVeiculo extends javax.swing.JFrame {
     private void jbVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVoltarActionPerformed
         dispose();
     }//GEN-LAST:event_jbVoltarActionPerformed
+
+    private void jtListaVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtListaVMouseClicked
+        control.populaTextos();
+    }//GEN-LAST:event_jtListaVMouseClicked
 
     /**
      * @param args the command line arguments

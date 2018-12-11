@@ -11,7 +11,9 @@ package util;
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -27,7 +29,7 @@ public class Conexao {
     public static Connection getConexao() {
         try {
             conn = DriverManager.getConnection(URL, USER, PASS);
-            System.out.println("Conectou...");
+            //System.out.println("Conectou...");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -38,6 +40,29 @@ public class Conexao {
             }
         }
         return conn;
+    }
+    
+        private static void fecha(Connection conn, Statement stmt, ResultSet rs) throws Exception{
+        if(conn != null){
+            conn.close();
+        }
+        
+        if(stmt != null){
+            stmt.close();
+        }
+        if(rs != null){
+            rs.close();
+        }
+    }
+    
+    public static void fechaConexao(Connection conn, Statement stmt, ResultSet rs) throws Exception{
+        fecha(conn, stmt, rs);
+    }
+    public static void fechaConexao(Connection conn, Statement stmt) throws Exception{
+        fecha(conn, stmt, null);
+    }
+    public static void fechaConexao(Connection conn) throws Exception{
+        fecha(conn, null, null);
     }
 
 }
